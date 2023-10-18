@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject prefabEasyEnemy;
     public GameObject prefabMediumEnemy;
+    public ParticleSystem explosionParticle;
 
     public float spawnInterval = 5f;
     private float elapsedTime;
@@ -56,5 +57,10 @@ public class GameManager : MonoBehaviour
     void Spawn(GameObject prefab, Vector3 initialPosition)
     {
         Instantiate(prefab, initialPosition, prefab.transform.rotation);
+    }
+
+    public ParticleSystem getExplosionParticle()
+    {
+        return explosionParticle;
     }
 }

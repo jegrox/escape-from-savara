@@ -11,9 +11,9 @@ public class Player : Spaceship
 
     public GameObject beamPrefab;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
     }
 
     public override void Move()

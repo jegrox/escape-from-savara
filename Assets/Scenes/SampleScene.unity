@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabEasyEnemy: {fileID: 7260510939581618638, guid: edc213390a60f314a998f530447bc9e8, type: 3}
   prefabMediumEnemy: {fileID: 6252865056334263975, guid: 47ab193998e0c4e4d819cf53cfd4f933, type: 3}
+  explosionParticle: {fileID: 19821056, guid: 079954accd64b32419ec069129c81273, type: 3}
   spawnInterval: 5
   prefabs:
   - {fileID: 4197654352388092201, guid: 73ef9d16a5bbf0842802adc687dc489d, type: 3}

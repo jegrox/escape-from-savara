@@ -7,10 +7,14 @@ using UnityEngine;
 public class Spaceship : MonoBehaviour
 {
     public float speed = 5f;
+
+    private ParticleSystem explosionParticle;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        explosionParticle = gameManager.getExplosionParticle();
+
     }
 
     // Update is called once per frame
@@ -23,7 +27,9 @@ public class Spaceship : MonoBehaviour
     {
         //TODO: Animate particle explosion
         Debug.Log("Collided!");
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         Destroy(gameObject);
+        
     }
 
     // POLYMORPHISM
