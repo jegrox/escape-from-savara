@@ -34,8 +34,6 @@ public class Beam : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // TODO: Animate particle explosion
-        Debug.Log("Hit enemy!");
         Destroy(this.gameObject);
     }
 }
