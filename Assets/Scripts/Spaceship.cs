@@ -7,8 +7,6 @@ using UnityEngine;
 public class Spaceship : MonoBehaviour
 {
     public float speed = 5f;
-    public float minX = -150f;
-    public float maxX = 150f;
     public float xRange = 150f;
 
     private ParticleSystem explosionParticle;
@@ -31,7 +29,6 @@ public class Spaceship : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided!");
         Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         Destroy(gameObject);
     }
