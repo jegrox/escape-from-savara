@@ -7,6 +7,9 @@ using UnityEngine;
 public class Spaceship : MonoBehaviour
 {
     public float speed = 5f;
+    public float minX = -150f;
+    public float maxX = 150f;
+    public float xRange = 150f;
 
     private ParticleSystem explosionParticle;
     // Start is called before the first frame update
@@ -20,6 +23,8 @@ public class Spaceship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ABSTRACTION
+        CheckBoundaries();
         Move();
         Shoot();
     }
@@ -37,8 +42,22 @@ public class Spaceship : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
+    //POLYMORPHISM
     protected virtual void Shoot()
     {
         // Default is to do nothing
+    }
+
+    protected virtual void CheckBoundaries()
+    {
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
     }
 }

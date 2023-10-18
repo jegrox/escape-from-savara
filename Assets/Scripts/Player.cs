@@ -10,6 +10,9 @@ public class Player : Spaceship
 {
 
     public GameObject beamPrefab;
+    public float zRange = 150f;
+    public float minZ = -30f;
+    public float maxZ = 100f;
 
     protected override void Start()
     {
@@ -31,5 +34,20 @@ public class Player : Spaceship
             Vector3 beamPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z + 20);
             Instantiate(beamPrefab, beamPosition, beamPrefab.transform.rotation);
         }
+    }
+
+    //POLYMORPHISM
+    protected override void CheckBoundaries()
+    {
+        if (transform.position.z < minZ)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, minZ);
+        }
+
+        if (transform.position.z > maxZ)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, maxZ);
+        }
+        base.CheckBoundaries();
     }
 }

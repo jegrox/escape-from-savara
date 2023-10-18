@@ -596,8 +596,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 431.88782, y: 57.53131, z: 866.552}
-  m_Center: {x: -268.33932, y: -135.21716, z: 510.17883}
+  m_Size: {x: 431.88782, y: 24.361504, z: 866.552}
+  m_Center: {x: -268.33932, y: -135.92413, z: 510.17883}
 --- !u!1001 &1903717313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -684,7 +684,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
+  minX: 150
+  maxX: -150
+  xRange: 150
   beamPrefab: {fileID: 705764588712707754, guid: 3ade79f53ea7cb44682c4568c89577b3, type: 3}
+  zRange: 150
+  minZ: -30
+  maxZ: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
