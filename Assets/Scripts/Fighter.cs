@@ -18,21 +18,19 @@ public class Fighter : Spaceship
         elapsedTime = 0f;
     }
 
-    public override void Move()
+    protected override void Move()
     {
         base.Move();
+    }
+
+    protected override void Shoot()
+    {
         elapsedTime += Time.deltaTime;
         if (elapsedTime > shootInterval)
         {
-            shoot();
+            Debug.Log("Shoot!");
+            Instantiate(beamPrefab, transform.position - Vector3.forward * 30, beamPrefab.transform.rotation);
             elapsedTime = 0f;
         }
-
-    }
-
-    void shoot()
-    {
-        Debug.Log("Shoot!");
-        Instantiate(beamPrefab, transform.position - Vector3.forward * 30, beamPrefab.transform.rotation);
     }
 }

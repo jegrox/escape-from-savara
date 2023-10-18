@@ -16,13 +16,16 @@ public class Player : Spaceship
         base.Start();
     }
 
-    public override void Move()
+    protected override void Move()
     {
         float VerticalInput = Input.GetAxis("Vertical");
         float HorizontalInput = Input.GetAxis("Horizontal");
 
         gameObject.transform.Translate(HorizontalInput * speed * Time.deltaTime, 0, VerticalInput * speed * Time.deltaTime);
+    }
 
+    protected override void Shoot()
+    {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             Vector3 beamPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z + 20);

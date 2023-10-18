@@ -21,20 +21,24 @@ public class Spaceship : MonoBehaviour
     void Update()
     {
         Move();
+        Shoot();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //TODO: Animate particle explosion
         Debug.Log("Collided!");
         Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         Destroy(gameObject);
-        
     }
 
     // POLYMORPHISM
-    public virtual void Move()
+    protected virtual void Move()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    protected virtual void Shoot()
+    {
+        // Default is to do nothing
     }
 }
