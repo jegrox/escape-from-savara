@@ -8,6 +8,7 @@ public class Spaceship : MonoBehaviour
 {
     public float speed = 5f;
     public float xRange = 150f;
+    public float hp = 1;
 
     private ParticleSystem explosionParticle;
     // Start is called before the first frame update
@@ -21,6 +22,8 @@ public class Spaceship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DestroyIfOutOfHP();
+
         //ABSTRACTION
         CheckBoundaries();
         Move();
@@ -29,8 +32,15 @@ public class Spaceship : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
-        Destroy(gameObject);
+        hp--;
+    }
+
+    private void DestroyIfOutOfHP()
+    {
+        if (hp <= 0 ) {
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            Destroy(gameObject);
+        }
     }
 
     // POLYMORPHISM

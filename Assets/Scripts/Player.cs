@@ -17,6 +17,7 @@ public class Player : Spaceship
     protected override void Start()
     {
         base.Start();
+        this.hp = 5; //POLYMORPHISM
     }
 
     protected override void Move()
