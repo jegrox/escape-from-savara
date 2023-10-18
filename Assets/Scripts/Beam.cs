@@ -7,8 +7,8 @@ public class Beam : MonoBehaviour
 {
 
     public float speed = 20f;
-    public float zMax = 100;
-    public float zMin = -100;
+    public float zMax = 150;
+    public float zMin = -150;
     
     // Start is called before the first frame update
     void Start()
