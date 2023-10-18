@@ -5,11 +5,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Input = UnityEngine.Input;
 
-
-public class Player : MonoBehaviour
+// INHERITANCE
+public class Player : Spaceship
 {
 
-    public float speed = 5f;
     public GameObject beamPrefab;
 
     // Start is called before the first frame update
@@ -17,8 +16,7 @@ public class Player : MonoBehaviour
     {
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Move()
     {
         float VerticalInput = Input.GetAxis("Vertical");
         float HorizontalInput = Input.GetAxis("Horizontal");

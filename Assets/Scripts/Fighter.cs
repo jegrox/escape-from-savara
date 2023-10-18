@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Fighter : Enemy
+//INHERITANCE
+public class Fighter : Spaceship
 {
-    public float speed = 3f;
     public float shootInterval = 2f;
     public float elapsedTime;
 
@@ -16,17 +17,16 @@ public class Fighter : Enemy
         elapsedTime = 0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Move()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
+        base.Move();
         elapsedTime += Time.deltaTime;
         if (elapsedTime > shootInterval)
         {
             shoot();
             elapsedTime = 0f;
         }
+
     }
 
     void shoot()
