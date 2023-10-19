@@ -1,32 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject prefabEasyEnemy;
-    public GameObject prefabMediumEnemy;
     public ParticleSystem explosionParticle;
 
     public float spawnInterval = 5f;
     private float elapsedTime;
 
     public GameObject[] prefabs;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI hpText;
+
+    private Player player;
+    private int playerHP;
 
     private int minSpawn = 1;
     private int maxSpawn = 2;
     private int wave = 0;
     private int maxEnemyIdx = 1;
+    private int score = 0;
 
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        UpdateHP();
         elapsedTime = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateHP();
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime >= spawnInterval)
@@ -57,6 +65,23 @@ public class GameManager : MonoBehaviour
     void Spawn(GameObject prefab, Vector3 initialPosition)
     {
         Instantiate(prefab, initialPosition, prefab.transform.rotation);
+    }
+
+    // ENCAPSULATION
+    public void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreText.text = "Score: " + score;
+    }
+
+    void UpdateHP()
+    {
+        int hpToUpdate = player.getHP();
+        if (hpToUpdate != playerHP)
+        {
+            playerHP = hpToUpdate;
+            hpText.text = "HP: " + playerHP;
+        }
     }
 
     public ParticleSystem getExplosionParticle()

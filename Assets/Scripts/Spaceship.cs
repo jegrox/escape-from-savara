@@ -8,7 +8,7 @@ public class Spaceship : MonoBehaviour
 {
     public float speed = 5f;
     public float xRange = 150f;
-    public float hp = 1;
+    protected int hp;
 
     private ParticleSystem explosionParticle;
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class Spaceship : MonoBehaviour
     {
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         explosionParticle = gameManager.getExplosionParticle();
-
+        hp = 1;
     }
 
     // Update is called once per frame
@@ -66,5 +66,11 @@ public class Spaceship : MonoBehaviour
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
+    }
+
+    // ENCAPSULATION
+    public int getHP()
+    {
+        return this.hp;
     }
 }
