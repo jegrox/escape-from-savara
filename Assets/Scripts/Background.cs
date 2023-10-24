@@ -8,25 +8,28 @@ public class Background : MonoBehaviour
     public float speed = 50f;
     private Vector3 startPos;
     private float repeatWidth;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         startPos = transform.position;
         repeatWidth = GetComponent<BoxCollider>().size.z / 2;
-        Debug.Log("Start position: " + startPos);
-        Debug.Log("Repeat width: " + repeatWidth);
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Updates");
+        if (!gameManager.IsGameActive())
+        {
+            return;
+        }
         transform.Translate(Vector3.back * speed * Time.deltaTime);
 
         if (transform.position.z < startPos.z - repeatWidth)
         {
-            Debug.Log("Reset width");
             transform.position = startPos;
         }
     }

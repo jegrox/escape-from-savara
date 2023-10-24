@@ -13,6 +13,7 @@ public class Kamikaze : Spaceship
         base.Start();
         player = GameObject.Find("Player");
         this.hp = 2; // POLYMORPHISM
+        this.score = 5; // POLYMORPHISM
     }
 
     protected override void Move()

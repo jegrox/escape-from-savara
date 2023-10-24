@@ -16,6 +16,7 @@ public class Fighter : Spaceship
     {
         base.Start();
         elapsedTime = 0f;
+        this.score = 2;
     }
 
     protected override void Move()
