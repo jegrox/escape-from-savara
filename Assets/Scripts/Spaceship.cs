@@ -9,14 +9,18 @@ public class Spaceship : MonoBehaviour
     public float speed = 5f;
     public float xRange = 150f;
     protected int hp;
+    protected int score;
+
+    private GameManager gameManager;
 
     private ParticleSystem explosionParticle;
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         explosionParticle = gameManager.getExplosionParticle();
         hp = 1;
+        score = 1;
     }
 
     // Update is called once per frame
@@ -40,6 +44,7 @@ public class Spaceship : MonoBehaviour
         if (hp <= 0 ) {
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             Destroy(gameObject);
+            gameManager.UpdateScore(score);
         }
     }
 
