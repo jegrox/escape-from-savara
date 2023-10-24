@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +10,13 @@ public class GameManager : MonoBehaviour
     public float spawnInterval = 5f;
     private float elapsedTime;
 
+    public GameObject titleScreen;
+    public GameObject hud;
     public GameObject[] prefabs;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI hpText;
+
+    private Button button;
 
     private Player player;
     private int playerHP;
@@ -24,9 +27,14 @@ public class GameManager : MonoBehaviour
     private int maxEnemyIdx = 1;
     private int score = 0;
 
+    private bool isActive = false;
+
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        button  = GameObject.Find("Start").GetComponent<Button>();
+        button.onClick.AddListener(StartGame);
+
         UpdateHP();
         elapsedTime = 0f;
     }
@@ -34,6 +42,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isActive)
+        {
+            return;
+        }
+
         UpdateHP();
         elapsedTime += Time.deltaTime;
 
@@ -62,9 +75,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void StartGame()
+    {
+        if (!isActive)
+        {
+            isActive = true;
+            titleScreen.SetActive(false);
+            hud.SetActive(true);
+        }
+    }
+
     void Spawn(GameObject prefab, Vector3 initialPosition)
     {
         Instantiate(prefab, initialPosition, prefab.transform.rotation);
+    }
+
+    public bool IsGameActive()
+    {
+        return isActive;
     }
 
     // ENCAPSULATION

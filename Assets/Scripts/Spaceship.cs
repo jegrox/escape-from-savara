@@ -26,6 +26,10 @@ public class Spaceship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!gameManager.IsGameActive())
+        {
+            return;
+        }
         DestroyIfOutOfHP();
 
         //ABSTRACTION
